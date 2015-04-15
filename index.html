@@ -1,3 +1,5 @@
+
+
 <html lang="nl">
 <head>
 	<meta charset="utf-8"/>
@@ -13,7 +15,11 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/huisrekening-config.js"></script>
+	<script src="js/huisrekening-main.js"></script>
 
 	<style>#content {padding: 20px;}</style>
 </head>
@@ -22,27 +28,27 @@
 		
 		<div class="col-md-12">
 
-			<h4 class="pull-right"><br>{{FULLADDRESS}}</h4>
+			<p class="pull-right">Adres: <span id="labelAddress">{{FULLADDRESS}}</span></p>
 			<h3><i class="fa fa-euro"></i><i class="fa fa-home"></i> &nbsp;Huisrekening</h3>
 
 			<br>
 			<br>
-			<a href="#" class="btn btn-primary pull-left" title="Nieuwe uitgave toevoegen" style="margin-right:10px;">
+			<a href="#" class="btn btn-primary pull-left" title="Nieuwe uitgave toevoegen" data-toggle="modal" data-target="#modalNewExpense" style="margin-right:10px;">
 				<i class="fa fa-plus-circle"></i> &nbsp; Uitgave..
 			</a>
-			<a href="#" class="btn btn-success pull-left" title="Huidige stand van zaken afrekenen">
+			<a href="#" class="btn btn-success pull-left" title="Huidige stand van zaken afrekenen" data-toggle="modal" data-target="#modalComputeResult">
 				<i class="fa fa-check"></i> &nbsp; Afrekenen
 			</a>
-			<a href="#" class="btn btn-info pull-right" title="Instellingen bekijken">
+			<button type="button" class="btn btn-info pull-right" title="Instellingen bekijken" data-toggle="modal" data-target="#modalSettings">
 				<i class="fa fa-gear"></i> &nbsp; Instellingen
-			</a>
+			</button>
 	
 		</div>
 		
 			
 		<div class="col-md-3">
 			<br>
-			<h3>	Balans</h3>
+			<h3>Balans</h3>
 			<h2>&euro; 4.30</h2>
 			<p>Komt binnenkort</p>
 			<ul>
@@ -80,10 +86,69 @@
 
 		<div class="col-md-12" id="footer">
 			<hr>
-			<small class="pull-left">&copy; Huisrekening 0.0.1 - <a href="http://daanrijpkema.me" target="blank" title="Website van Daan Rijpkema">Daan Rijpkema</a></small>
+			<small class="pull-left">&copy; Huisrekening 0.1.0 - <a href="http://daanrijpkema.me" target="blank" title="Website van Daan Rijpkema">Daan Rijpkema</a></small>
 			<small class="pull-right"><a href="https://github.com/DaanRijpkema/huisrekening" title="GitHub source repository van Huisrekening" target="blank">GitHub</a></small>
 		</div>
 	</div>
+
+
+
+<div class="modal fade" id="modalNewExpense"  tabindex="-1" role="dialog" aria-labelledby="modalNewExpenseLabel" aria-hidden="true" aria-describedby="Settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalNewExpenseLabel">Nieuwe Uitgave</h4>
+      </div>
+      <div class="modal-body">
+        <p>Nieuwe uitgave toevoegen</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+        <button type="button" class="btn btn-primary">Toevoegen</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="modalComputeResult"  tabindex="-1" role="dialog" aria-labelledby="modalComputeResultLabel" aria-hidden="true" aria-describedby="Settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalComputeResultLabel">Afrekenen</h4>
+      </div>
+      <div class="modal-body">
+        <p>Alles afrekenen</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+        <button type="button" class="btn btn-danger">Afrekenen</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modalSettings"  tabindex="-1" role="dialog" aria-labelledby="modalSettingsLabel" aria-hidden="true" aria-describedby="Settings">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalSettingsLabel">Instellingen</h4>
+      </div>
+      <div class="modal-body">
+        <p id="settingsContent"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        <button type="button" class="btn btn-primary">Opslaan</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </body>
 </html>
 
